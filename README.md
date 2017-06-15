@@ -1,5 +1,5 @@
 # ModelStudio
-	Software fo view, edit, and convert 3D models
+	Software to view, edit, and convert 3D models
 
 *Author
 	Shunsuke Yoshimoto
