@@ -877,6 +877,27 @@ namespace ModelStudio
 		this->mapDepth=numRep;
 	}
 
+	void VOXMODEL::setColorWithinSurf()
+	{
+		//自由空間を黒で埋める
+		this->resetColorAt();
+		//表面の色を取得,物体内部をその色で埋める（1色物体を仮定）
+		int x, y, z;
+		Vector3d color_t;
+		for (int i = 0; i < numVoxel; i++) {
+			z = i%depth;
+			y = (int)(i / depth) % height;
+			x = (int)(i / depth) / height;
+			if (data[x][y][z].color != Vector3d(0, 0, 0)) {
+				color_t = data[x][y][z].color;
+				break;
+			}
+		}
+		this->resetColorSurfAndInExceptAt(0, SURF_COL, INTR_COL);
+
+//		this->resetColorSurfAndInExceptAt(0, color_t, color_t);
+	}
+
 
 	bool VOXMODEL::millingSurfaceWith(int _index)
 	{

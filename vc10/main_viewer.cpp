@@ -27,6 +27,7 @@ void thread1(LPVOID pParam)
 	std::cout<<"Command list"<<std::endl;
 	std::cout<<"[LOAD DATA] -l:filename(*.obj, *.stl, *.vox)"<<std::endl;
 	std::cout<<"[CONVERT DATA] -c:(obj2stl, stl2obj, obj2vox:#res, stl2vox:#res)"<<std::endl;
+	std::cout <<"[PROCESS DATA] -p:(fill)" << std::endl;
 	std::cout<<"[SAVE DATA] -s:filename(*.obj, *.stl, *.vox, (0:x,1:y,2:z):*.slice)"<<std::endl;
 	std::cout<<"[EXIT] -q"<<std::endl;
 
@@ -118,6 +119,17 @@ void thread1(LPVOID pParam)
 			}
 			else{
 				std::cout<<"-s:INVALID OPTION"<<std::endl;
+			}
+		}
+		else if (strstr(command, "-p")) {
+			if (strstr(command, "fill")) {
+				std::cout << "Filling color inside object...";
+				if (vox->getIsLoaded()) {
+					vox->labeling();
+					vox->setColorWithinSurf();
+					std::cout << "[OK]" << std::endl;
+				}
+				else std::cout << "[FAIL]" << std::endl;
 			}
 		}
 		else if(strstr(command,"-q")){

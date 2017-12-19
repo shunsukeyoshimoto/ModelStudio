@@ -197,6 +197,8 @@ namespace ModelStudio
 		void resetColorSurfAndInExceptAt(int _index, Vector3d _sColor, Vector3d _iColor);
 		//物体の内部にグラデーションマップを生成する
 		void setGradMapWithinSurf();
+		//物体の内部を表面と同じ色で塗りつぶす
+		void setColorWithinSurf();
 
 		//特定のindexにおけるSurfaceボクセルを削り、Surfaceを設定し直す
 		bool millingSurfaceWith(int _index);
