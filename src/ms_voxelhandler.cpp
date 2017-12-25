@@ -695,7 +695,8 @@ namespace ModelStudio
 	void VOXMODEL::labeling()
 	{
 		int numLabel=this->setLabel();
-		this->setColorMap(numLabel);
+//		std::cout << numLabel << std::endl;
+//		this->setColorMap(numLabel);
 
 		//‚±‚±‚©‚ç‚Í•Ê‚ÌŠÖ”‚Æ‚µ‚ÄŽÀ‘•
 	//	this->resetColorAt(0,Vector3d(0,0,0));
@@ -781,7 +782,7 @@ namespace ModelStudio
 			y=(int)(i/depth)%height;
 			x=(int)(i/depth)/height;
 			data[x][y][z].label=newLUT[data[x][y][z].label];
-		//	std::cout<<data[i].label<<std::endl;
+//			std::cout<<data[x][y][z].label<<std::endl;
 		}
 		delete []LUT;
 		delete []newLUT;
@@ -888,14 +889,14 @@ namespace ModelStudio
 			z = i%depth;
 			y = (int)(i / depth) % height;
 			x = (int)(i / depth) / height;
-			if (data[x][y][z].color != Vector3d(0, 0, 0)) {
+			if (data[x][y][z].isSurface) {
 				color_t = data[x][y][z].color;
 				break;
 			}
 		}
-		this->resetColorSurfAndInExceptAt(0, SURF_COL, INTR_COL);
-
-//		this->resetColorSurfAndInExceptAt(0, color_t, color_t);
+		std::cout << color_t << std::endl;
+//		this->resetColorSurfAndInExceptAt(0, SURF_COL, INTR_COL);
+		this->resetColorSurfAndInExceptAt(0, color_t, color_t);
 	}
 
 

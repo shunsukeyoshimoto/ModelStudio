@@ -127,6 +127,7 @@ void thread1(LPVOID pParam)
 				if (vox->getIsLoaded()) {
 					vox->labeling();
 					vox->setColorWithinSurf();
+					vox->setSlice();
 					std::cout << "[OK]" << std::endl;
 				}
 				else std::cout << "[FAIL]" << std::endl;

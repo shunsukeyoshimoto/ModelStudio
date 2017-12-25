@@ -1,4 +1,4 @@
--l:../data/bunny.obj
+-l:../data/sample2.obj
 -c:obj2vox:128
 -p:fill
 -s:2:../data/slice/img.slice

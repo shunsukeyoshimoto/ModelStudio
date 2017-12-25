@@ -41,7 +41,7 @@ namespace ModelStudio
 			t_color.x=_obj->getMaterial(_obj->getFacet(i).materialIndex).getDiffuse().x;
 			t_color.y=_obj->getMaterial(_obj->getFacet(i).materialIndex).getDiffuse().y;
 			t_color.z=_obj->getMaterial(_obj->getFacet(i).materialIndex).getDiffuse().z;
-			testIntersection(_obj->getFacetPointer(i),_vox,t_color,1);
+			testIntersection(_obj->getFacetPointer(i),_vox,t_color);
 		}
 
 		std::cout<<"[OK]"<<std::endl;
