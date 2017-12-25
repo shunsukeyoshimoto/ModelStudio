@@ -1,7 +1,7 @@
 ModelStudio v0.0.0
 ====
 
-[(overview1.png)][(overview2.png)]
+![overview 1](overview1.png "overview 1")![overview 2](overview2.png, "overview 2")
 
 ## Overview
 
