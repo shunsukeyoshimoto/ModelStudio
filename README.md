@@ -1,9 +1,9 @@
 ModelStudio v0.0.0
 ====
 
-[overview1.png][overview1.png]
+[(overview1.png)][(overview2.png)]
 
-Overview
+## Overview
 
 This project is for viewing, editing, and converting 3D models using OpenGL.
 
@@ -17,7 +17,7 @@ This project is for viewing, editing, and converting 3D models using OpenGL.
 - Supported Image format: bmp
 
 
-##Smpale command
+## Smpale command
 
 	-l:../data/sample2.obj
 	-c:obj2vox:128
