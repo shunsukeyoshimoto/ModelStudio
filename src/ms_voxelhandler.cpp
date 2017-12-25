@@ -172,6 +172,7 @@ namespace ModelStudio
 		glPopMatrix();
 		glEnable(GL_LIGHTING);
 		glDisable(GL_ALPHA_TEST);
+		glDisable(GL_BLEND);
 		glEnable(GL_CULL_FACE);
 	}
 	void VOXMODEL::renderGuid(){
@@ -441,7 +442,14 @@ namespace ModelStudio
 
 		glPopMatrix();
 
+		glDisable(GL_TEXTURE_2D);
+		glEnable(GL_LIGHTING);
+		glEnable(GL_CULL_FACE);
+		glEnable(GL_BLEND);
+		glEnable(GL_ALPHA_TEST);
+
 	}
+
 	//ボクセルのクラスにrenderImagesを導入する
 	void VOXMODEL::renderImages(int _width, int _height)
 	{
