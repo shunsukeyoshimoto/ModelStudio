@@ -200,6 +200,7 @@ namespace ModelStudio
 	void STLMESH::setup()
 	{
 		this->calVertex();
+		this->calFacetIndex();
 		this->calFacetNormal();
 		this->calCenter();
 		this->calScale();

@@ -23,7 +23,9 @@ namespace ModelStudio{
 		Object(){}
 		~Object(){}
 		void (*render)();
+		void (*mouse)(Vector3d *_coord, int _mode);
 		void setObject(void (*_render)()){render=_render;}
+		void setMouse(void(*_mouse)(Vector3d *_coord, int _mode)) { mouse = _mouse; }
 	};
 
 	class GLHandler

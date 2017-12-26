@@ -23,6 +23,8 @@ namespace ModelStudio
 
 	void spanLabelVOX2OBJ(VOXMODEL *_vox, OBJMESH *_obj);
 	void setLabelOBJNearest(OBJMESH *_obj);
+	void selectSTL(STLMESH *_stl, Vector3d *_selected_coord);
+	void pickupFacet(STLMESH *_stl, Vector3d _coord, int _mode);
 
 	namespace ICP{
 		enum MatchingType{

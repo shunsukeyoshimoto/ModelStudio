@@ -42,6 +42,7 @@ namespace ModelStudio{
 	void surfMesh::newMesh()
 	{
 		this->vertex=new Vector3d[this->numVertex+2];
+		this->facet_index.resize(this->numVertex+2);
 		this->color=new Vector3f[this->numVertex+2];
 		this->labelIndex=new int[this->numVertex+2];
 		this->facet=new FACET[this->numFacet+2];
@@ -52,6 +53,7 @@ namespace ModelStudio{
 		for(int i=0;i<numVertex+2;i++){
 			isSelected[i]=false;
 			labelIndex[i]=-1;
+			this->facet_index[i].clear();
 		}
 	}
 
@@ -158,6 +160,14 @@ namespace ModelStudio{
 		for(int i=0;i<this->numFacet;i++){
 			for(int j=0;j<this->facet[i].numVertex;j++){
 				this->facet[i].vertex[j]=vertex[this->facet[i].vertexIndex[j]];
+			}
+		}
+	}
+	void surfMesh::calFacetIndex()
+	{
+		for (int i = 0; i<this->numFacet; i++) {
+			for (int j = 0; j<this->facet[i].numVertex; j++) {
+				this->facet_index[this->facet[i].vertexIndex[j]].push_back(i);
 			}
 		}
 	}
@@ -441,6 +451,38 @@ namespace ModelStudio{
 		this->calLine();
 		std::cout<<"[OK]"<<std::endl;
 	}
+
+	void surfMesh::pushLabelList()
+	{
+		std::vector<int> t_index;
+		LABEL t_label;
+		for (int i = 0; i < this->numFacet; i++) {
+			if (this->facet[i].isSelected) {
+				t_index.push_back(i);
+				this->facet[i].isSelected = false;
+			}
+		}
+		t_label.index = t_index;
+		t_label.label = this->label_list.size();
+		this->label_list.push_back(t_label);
+	}
+
+	bool surfMesh::saveLabelList(const char *_filename) 
+	{
+		std::ofstream file;
+		file.open(_filename, std::ios::out);
+		if (!file.is_open())return false;
+		for (int i = 0; i < this->label_list.size(); i++) {
+			for (int j = 0; j < this->label_list[i].index.size(); j++) {
+				file << this->label_list[i].index[j] << ",8," << this->label_list[i].label;
+				if(i!= this->label_list.size() - 1 || j != this->label_list[i].index.size() -1)
+					file<< std::endl;
+			}
+		}
+		file.close();
+		return true;
+	}
+
 	bool isSharedLine(LINE _new, LINE *_old, int _num)
 	{
 		for(int i=0;i<_num;i++){

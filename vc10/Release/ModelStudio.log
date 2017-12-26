@@ -1,36 +1,33 @@
 ﻿C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(373,5): warning MSB8004: Output ディレクトリの末尾がスラッシュではありません。Output ディレクトリが適切に評価されるようにするために、このビルド インスタンスによってスラッシュが追加されます。
-  ms_voxelhandler.cpp
+  ms_surfmesh.cpp
 C:\Users\Yoshimoto\Documents\GitHub\ModelStudio\include\ms_glutilities.h(41): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\string.h(136): note: 'strcpy' の宣言を確認してください
 C:\Users\Yoshimoto\Documents\GitHub\ModelStudio\include\ms_glutilities.h(53): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\string.h(136): note: 'strcpy' の宣言を確認してください
 C:\Users\Yoshimoto\Documents\GitHub\ModelStudio\include\ms_glutilities.h(62): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\string.h(136): note: 'strcpy' の宣言を確認してください
-..\src\ms_voxelhandler.cpp(150): warning C4305: '引数': 'double' から 'GLfloat' へ切り詰めます。
-..\src\ms_voxelhandler.cpp(163): warning C4305: '引数': 'double' から 'GLfloat' へ切り詰めます。
-..\src\ms_voxelhandler.cpp(163): warning C4244: '引数': 'double' から 'GLfloat' への変換です。データが失われる可能性があります。
-..\src\ms_voxelhandler.cpp(165): warning C4244: '引数': 'double' から 'GLfloat' への変換です。データが失われる可能性があります。
-..\src\ms_voxelhandler.cpp(293): warning C4244: '引数': 'double' から 'int' への変換です。データが失われる可能性があります。
-..\src\ms_voxelhandler.cpp(294): warning C4244: '引数': 'double' から 'int' への変換です。データが失われる可能性があります。
-..\src\ms_voxelhandler.cpp(295): warning C4244: '引数': 'double' から 'int' への変換です。データが失われる可能性があります。
-..\src\ms_voxelhandler.cpp(299): warning C4244: '引数': 'double' から 'int' への変換です。データが失われる可能性があります。
-..\src\ms_voxelhandler.cpp(300): warning C4244: '引数': 'double' から 'int' への変換です。データが失われる可能性があります。
-..\src\ms_voxelhandler.cpp(301): warning C4244: '引数': 'double' から 'int' への変換です。データが失われる可能性があります。
-..\src\ms_voxelhandler.cpp(303): warning C4244: '引数': 'double' から 'int' への変換です。データが失われる可能性があります。
-..\src\ms_voxelhandler.cpp(304): warning C4244: '引数': 'double' から 'int' への変換です。データが失われる可能性があります。
-..\src\ms_voxelhandler.cpp(305): warning C4244: '引数': 'double' から 'int' への変換です。データが失われる可能性があります。
-..\src\ms_voxelhandler.cpp(307): warning C4244: '引数': 'double' から 'int' への変換です。データが失われる可能性があります。
-..\src\ms_voxelhandler.cpp(308): warning C4244: '引数': 'double' から 'int' への変換です。データが失われる可能性があります。
-..\src\ms_voxelhandler.cpp(309): warning C4244: '引数': 'double' から 'int' への変換です。データが失われる可能性があります。
-..\src\ms_voxelhandler.cpp(471): warning C4305: '引数': 'double' から 'GLclampf' へ切り詰めます。
-..\src\ms_voxelhandler.cpp(478): warning C4244: '引数': 'double' から 'int' への変換です。データが失われる可能性があります。
-..\src\ms_voxelhandler.cpp(479): warning C4244: '引数': 'double' から 'int' への変換です。データが失われる可能性があります。
-..\src\ms_voxelhandler.cpp(480): warning C4244: '引数': 'double' から 'int' への変換です。データが失われる可能性があります。
-..\src\ms_voxelhandler.cpp(539): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\stdio.h(1772): note: 'sprintf' の宣言を確認してください
+..\src\ms_surfmesh.cpp(475): warning C4018: '<': signed と unsigned の数値を比較しようとしました。
+..\src\ms_surfmesh.cpp(476): warning C4018: '<': signed と unsigned の数値を比較しようとしました。
+  main_viewer.cpp
+C:\Users\Yoshimoto\Documents\GitHub\ModelStudio\include\ms_glutilities.h(41): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\string.h(136): note: 'strcpy' の宣言を確認してください
+C:\Users\Yoshimoto\Documents\GitHub\ModelStudio\include\ms_glutilities.h(53): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\string.h(136): note: 'strcpy' の宣言を確認してください
+C:\Users\Yoshimoto\Documents\GitHub\ModelStudio\include\ms_glutilities.h(62): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\string.h(136): note: 'strcpy' の宣言を確認してください
+main_viewer.cpp(41): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\stdio.h(2261): note: 'sscanf' の宣言を確認してください
+main_viewer.cpp(74): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\stdio.h(2261): note: 'sscanf' の宣言を確認してください
+main_viewer.cpp(84): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\stdio.h(2261): note: 'sscanf' の宣言を確認してください
+main_viewer.cpp(101): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\stdio.h(2261): note: 'sscanf' の宣言を確認してください
+main_viewer.cpp(114): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\stdio.h(2261): note: 'sscanf' の宣言を確認してください
   コード生成しています。
-  2 of 460 functions ( 0.4%) were compiled, the rest were copied from previous compilation.
+  3 of 678 functions ( 0.4%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    1 functions had inline decision re-evaluated but remain unchanged
+    5 functions had inline decision re-evaluated but remain unchanged
   コード生成が終了しました。
   ModelStudio.vcxproj -> C:\Users\Yoshimoto\Documents\GitHub\ModelStudio\vc10\../bin\ModelStudio.exe

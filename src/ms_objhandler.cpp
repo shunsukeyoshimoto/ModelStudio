@@ -230,6 +230,7 @@ namespace ModelStudio
 	void OBJMESH::setup()
 	{
 		this->calFacetVertex();
+		this->calFacetIndex();
 		this->calFacetNormal();
 		this->calCenter();
 		this->calScale();

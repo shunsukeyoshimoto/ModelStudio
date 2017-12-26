@@ -28,7 +28,8 @@ void thread1(LPVOID pParam)
 	std::cout<<"[LOAD DATA] -l:filename(*.obj, *.stl, *.vox)"<<std::endl;
 	std::cout<<"[CONVERT DATA] -c:(obj2stl, stl2obj, obj2vox:#res, stl2vox:#res)"<<std::endl;
 	std::cout <<"[PROCESS DATA] -p:(fill)" << std::endl;
-	std::cout<<"[SAVE DATA] -s:filename(*.obj, *.stl, *.vox, (0:x,1:y,2:z):*.slice)"<<std::endl;
+	std::cout <<"[PUSH LABEL] -a" << std::endl;
+	std::cout<<"[SAVE DATA] -s:filename(*.obj, *.stl, *.vox, (0:x,1:y,2:z):*.slice, *.e2es)"<<std::endl;
 	std::cout<<"[EXIT] -q"<<std::endl;
 
 	char command[256];
@@ -117,6 +118,11 @@ void thread1(LPVOID pParam)
 					std::cout<<"-s:slice:INVALID OPTION"<<std::endl;
 				}
 			}
+			else if (strstr(command, ".e2es")) {
+				std::cout << "Saving label list...";
+				stl->saveLabelList(t_filename);
+				std::cout << "[OK]";
+			}
 			else{
 				std::cout<<"-s:INVALID OPTION"<<std::endl;
 			}
@@ -132,6 +138,10 @@ void thread1(LPVOID pParam)
 				}
 				else std::cout << "[FAIL]" << std::endl;
 			}
+		}
+		else if (strstr(command, "-a")) {
+			stl->pushLabelList();
+			std::cout << "Push label" << std::endl;
 		}
 		else if(strstr(command,"-q")){
 			gl->setIsRun(false);
@@ -176,6 +186,15 @@ void object()
 	}
 }
 
+void mouse(ModelStudio::Vector3d *_coord, int _mode) 
+{
+	if (_mode == GLUT_ACTIVE_ALT) {
+		ModelStudio::selectSTL(stl, _coord);
+	}
+	if (_mode == GLUT_ACTIVE_CTRL || _mode == GLUT_ACTIVE_SHIFT) {
+		ModelStudio::pickupFacet(stl, _coord[0], _mode);
+	}
+}
 
 int main(int _argc, char *_argv[])
 {
@@ -187,6 +206,7 @@ int main(int _argc, char *_argv[])
 	argv=_argv;
 	gl = new ModelStudio::GLHandler; 
 	gl->getObject()->setObject(object);
+	gl->getObject()->setMouse(mouse);
 
 	HANDLE hMutex;
 	HANDLE hThread[3];

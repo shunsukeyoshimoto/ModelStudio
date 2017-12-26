@@ -44,6 +44,8 @@ namespace ModelStudio
 			light[i].setID(i);
 		}
 		camera[4].setTrans(GL_CAMERA_INIPOS);
+		camera[5].init(CAM_FRONT);
+
 		light[1].setPosition(Vector4f( 0, 1000.0, 0, 1.0 ));
 		light[2].setPosition(Vector4f( 0, 1000.0, -1000.0, 1.0 ));
 		glutInit(_argc,_argv);
@@ -88,6 +90,11 @@ namespace ModelStudio
 
 		glPushMatrix();	
 		object->render();
+		glPopMatrix();
+
+		camera[5].attach(window.size);
+		glPushMatrix();
+		select.render();
 		glPopMatrix();
 
 		camera[4].attach(window.size, false);
@@ -143,36 +150,81 @@ namespace ModelStudio
 
 	void GLHandler::mousePressEventGL(int _button, int _state, int _x, int _y)
 	{
+		Vector3d pos_world;
 		key = glutGetModifiers();
 		//クリックした点の3次元座標を取得
 		camera[cameraMode].attach(window.size);
 		posClicked=returnWorldCo(Vector3d(_x,_y,returnDepth(_x,_y)));
 
-//		if(key==GLUT_ACTIVE_ALT){
-			if(_state==GLUT_DOWN){
-				if(_button==GLUT_MIDDLE_BUTTON||cameraMode==0){
-					camera[cameraMode].MouseInput(_button, Vector2f(_x,_y));
-					camera[4].setAngle(camera[cameraMode].getAngle());
-				}
+
+		if(_state==GLUT_DOWN){
+			if(_button==GLUT_MIDDLE_BUTTON||cameraMode==0){
+				camera[cameraMode].MouseInput(_button, Vector2f(_x,_y));
+				camera[4].setAngle(camera[cameraMode].getAngle());
 			}
-			else if(_state=GLUT_UP){
-				camera[cameraMode].rmlUpdate();
-				camera[4].rml[0].Update();
-				camera[4].rml[2].Update();
-//			}
+		}
+		else if(_state=GLUT_UP){
+			camera[cameraMode].rmlUpdate();
+			camera[4].rml[0].Update();
+			camera[4].rml[2].Update();
+		}
+		static double sx, sy;
+		if (_button == GLUT_RIGHT_BUTTON && _state == GLUT_UP) {
+			select.setIsDrawSelectRegion(true);
+			Vector3d selectedCoord[8];
+			if (key == GLUT_ACTIVE_ALT) {
+				pos_world = returnWorldCo(Vector3d(sx, sy, 0));
+				selectedCoord[0] = pos_world;
+				pos_world = returnWorldCo(Vector3d(sx, _y, 0));
+				selectedCoord[1] = pos_world;
+				pos_world = returnWorldCo(Vector3d(_x, _y, 0));
+				selectedCoord[2] = pos_world;
+				pos_world = returnWorldCo(Vector3d(_x, sy, 0));
+				selectedCoord[3] = pos_world;
+				pos_world = returnWorldCo(Vector3d(sx, sy, 1));
+				selectedCoord[4] = pos_world;
+				pos_world = returnWorldCo(Vector3d(sx, _y, 1));
+				selectedCoord[5] = pos_world;
+				pos_world = returnWorldCo(Vector3d(_x, _y, 1));
+				selectedCoord[6] = pos_world;
+				pos_world = returnWorldCo(Vector3d(_x, sy, 1));
+				selectedCoord[7] = pos_world;
+			}
+			else if (key == GLUT_ACTIVE_CTRL || key == GLUT_ACTIVE_SHIFT) {
+				posClicked = returnWorldCo(Vector3d(_x, _y, returnDepth(_x, _y)));
+				selectedCoord[0] = posClicked;
+			}
+			object->mouse(selectedCoord, key);
+		}
+		if (_button == GLUT_RIGHT_BUTTON && _state == GLUT_DOWN) {
+			select.setIsDrawSelectRegion(true);
+			sx = _x;
+			sy = _y;
+			camera[5].attach(window.size);
+			Vector3d pos_camera = Vector3d(_x, _y, returnCameraCo(Vector3d(0, 0, 0)).z);
+			pos_world = returnWorldCo(pos_camera);
+			select.setLeftTop(Vector2f(pos_world.x, pos_world.y));
+			select.setRightBottom(Vector2f(pos_world.x, pos_world.y));
+		}
+		if (_state == GLUT_UP) {
+			select.setIsDrawSelectRegion(false);
 		}
 	}
 
 	void GLHandler::mouseMoveEventGL(int _x, int _y)
 	{
 		camera[cameraMode].attach(window.size);
-		posClicked=returnWorldCo(Vector3d(_x,_y,returnDepth(_x,_y)));
+		Vector3d pos_world = returnWorldCo(Vector3d(_x, _y, returnDepth(_x, _y)));
 
-		if(cameraMode==0){
-			camera[cameraMode].MouseMotion(Vector2f(_x,_y));
+		if (cameraMode == 0) {
+			camera[cameraMode].MouseMotion(Vector2f(_x, _y));
 			camera[4].setAngle(camera[cameraMode].getAngle());
 			camera[4].update();
 		}
+
+		camera[5].attach(window.size);
+		pos_world = returnWorldCo(Vector3d(_x, _y, returnDepth(_x, _y)));
+		select.setRightBottom(Vector2f(pos_world.x, pos_world.y));
 	}
 	void GLHandler::keyboardEventGL(unsigned char _key, int _x, int _y)
 	{

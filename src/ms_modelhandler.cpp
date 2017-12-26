@@ -315,6 +315,55 @@ namespace ModelStudio
 			}
 		}
 	}
+	void selectSTL(STLMESH *_stl, Vector3d *_selected_coord)
+	{
+		Vector3d select_normal;
+		bool is_po_wi_tr = false;
+		for (int i = 0; i<_stl->getNumFacet(); i++) {
+			_stl->getFacetPointer(i)->isSelected = false;
+		}
+
+		for (int i = 0; i<_stl->getNumVertex(); i++) {
+			for (int j = 0; j<4; j++) {
+				select_normal = (_selected_coord[(j + 1) % 4] - _selected_coord[j])
+					% (_selected_coord[j + 4] - _selected_coord[j]);
+				select_normal /= select_normal.abs();
+
+				is_po_wi_tr = ModelStudio::isPointWithinTriangle(_stl->Tr.getModel2Uni()*_stl->getVertex(i), select_normal, _selected_coord[j]);
+
+				if (!is_po_wi_tr) {
+					if (j == 3) {
+						for (int k = 0; k<_stl->getFacetIndexAt(i).size(); k++) {
+							_stl->getFacetPointer(_stl->getFacetIndexAt(i)[k])->isSelected = true;
+						}
+					}
+				}
+				else {
+					break;
+				}
+			}
+		}
+	}
+	void pickupFacet(STLMESH *_stl, Vector3d _coord, int _mode)
+	{
+		Vector3d select_normal;
+		bool is_on_facet = false;
+		if(_mode == GLUT_ACTIVE_SHIFT){}
+		else {
+			for (int i = 0; i<_stl->getNumFacet(); i++) {
+				_stl->getFacetPointer(i)->isSelected = false;
+			}
+		}
+
+		for (int i = 0; i<_stl->getNumFacet(); i++) {
+			is_on_facet = ModelStudio::isPointOnTriangle( _stl->Tr.getUni2Model()*_coord, _stl->getFacetPointer(i)->normal[0], _stl->getFacetPointer(i)->vertex );
+			if (is_on_facet) {
+				_stl->getFacetPointer(i)->isSelected = !_stl->getFacetPointer(i)->isSelected;
+				break;
+			}
+		}
+	}
+
 	/*
 	void clippingVOXbyPLANE(VOXMODEL *_vox, PLANE *_plane, int _numPlane)
 	{

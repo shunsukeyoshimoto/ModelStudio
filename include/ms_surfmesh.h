@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <iostream>
 #include <fstream>
+#include <vector>
 #include <GL/glut.h>
 #include <math.h>
 #include <ms_vectormatrix.h>
@@ -24,6 +25,10 @@ namespace ModelStudio{
 		NORMAL_NONE,
 		NORMAL_FACET,
 		NORMAL_POINT
+	};
+	struct LABEL {
+		std::vector<int> index;
+		int label;
 	};
 
 	class LINE
@@ -153,6 +158,8 @@ namespace ModelStudio{
 		Vector3d *normal;
 		Vector3d *vertex;
 		Vector3f *color;
+		std::vector<std::vector<int>> facet_index;
+		std::vector<LABEL> label_list;
 		int *labelIndex;
 		transferMatrixd T_human2traj;
 		bool *isSelected;
@@ -181,6 +188,7 @@ namespace ModelStudio{
 
 		void calFacetNormal();
 		void calFacetVertex();
+		void calFacetIndex();
 		void calLine();
 		void calVertex();
 		void calCenter();
@@ -244,6 +252,7 @@ namespace ModelStudio{
 		Material* getMaterialPointerAt(int _index){return &this->material[_index];}
 		int getLabelIndex(int _index){return this->labelIndex[_index];}
 		transferMatrixd getThuman2traj(){return this->T_human2traj;}
+		std::vector<int> getFacetIndexAt(int _index) { return this->facet_index[_index]; }
 
 		std::ostream& getInfo(std::ostream &stream);
 		void render();
@@ -279,6 +288,9 @@ namespace ModelStudio{
 		void clearSelection();
 
 		void quadrization();
+
+		void pushLabelList();
+		bool saveLabelList(const char *_filename);
 	};
 
 	bool isSharedLine(LINE _new, LINE *_old, int _num);
